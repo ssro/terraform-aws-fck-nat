@@ -85,6 +85,12 @@ variable "attach_ssm_policy" {
   default     = true
 }
 
+variable "credit_specification" {
+  description = "Customize the credit specification of the instance"
+  type        = string
+  default     = null
+}
+
 variable "use_spot_instances" {
   description = "Whether or not to use spot instances for running the NAT instance"
   type        = bool
@@ -157,4 +163,13 @@ variable "tags" {
   description = "Tags to apply to resources created within the module"
   type        = map(string)
   default     = {}
+}
+
+variable "cloud_init_parts" {
+  description = "Cloud-init parts to add to the user data script"
+  type = list(object({
+    content      = string
+    content_type = string
+  }))
+  default = []
 }
